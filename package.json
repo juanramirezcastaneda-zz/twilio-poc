@@ -1,0 +1,9 @@
+{
+  "name": "twilio-video",
+  "version": "0.0.0",
+  "description": "A poc for twilio video",
+  "main": "index.js",
+  "author": "juanramirezcastaneda",
+  "license": "MIT",
+  "private": false
+}

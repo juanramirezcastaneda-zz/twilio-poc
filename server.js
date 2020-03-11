@@ -19,17 +19,8 @@ var randomName = require('./randomname');
 // Create Express webapp.
 var app = express();
 
-// Set up the path for the quickstart.
-var quickstartPath = path.join(__dirname, '../quickstart/public');
-app.use('/quickstart', express.static(quickstartPath));
+app.use(express.static(__dirname + '/public'));
 
-// Set up the path for the examples page.
-var examplesPath = path.join(__dirname, '../examples');
-app.use('/examples', express.static(examplesPath));
-
-/**
- * Default to the Quick Start application.
- */
 app.get('/', function(_request, response) {
   response.sendFile(process.cwd() + '/public/index.html');
 });

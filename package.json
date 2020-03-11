@@ -23,7 +23,7 @@
     "clean:examples:localvideosnapshot": "rimraf examples/localvideosnapshot/public/index.js examples/localvideosnapshot/public/helpers.js",
     "clean:examples:mediadevices": "rimraf examples/mediadevices/public/index.js examples/mediadevices/public/helpers.js",
     "clean:quickstart": "rimraf quickstart/public/index.js",
-    "start": "node index.js"
+    "start": "node server.js"
   },
   "dependencies": {
     "dotenv": "^4.0.0",

@@ -140,6 +140,7 @@ div#controls div#room-controls button {
   width: 100%;
 }
 
+div#controls div#room-controls button#button-record,
 div#controls div#room-controls button#button-leave {
   display: none;
 }

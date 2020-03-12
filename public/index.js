@@ -1,7 +1,6 @@
 'use strict';
 
 import Video from 'twilio-video';
-console.log(Video);
 
 var activeRoom;
 var previewTracks;
@@ -45,6 +44,12 @@ $.getJSON('/token', function(data) {
   identity = data.identity;
   document.getElementById('room-controls').style.display = 'block';
 
+  // Bind record button
+  document.getElementById('button-record').onclick = function() {
+    console.log('record');
+    console.log(Video.createLocalVideoTrack().then(() => console.log('finish')));
+  };
+
   // Bind button to join Room.
   document.getElementById('button-join').onclick = function() {
     roomName = document.getElementById('room-name').value;
@@ -83,6 +88,7 @@ function roomJoined(room) {
 
   log("Joined as '" + identity + "'");
   document.getElementById('button-join').style.display = 'none';
+  document.getElementById('button-record').style.display = 'inline';
   document.getElementById('button-leave').style.display = 'inline';
 
   // Attach LocalParticipant's Tracks, if not already attached.
@@ -136,6 +142,7 @@ function roomJoined(room) {
     room.participants.forEach(detachParticipantTracks);
     activeRoom = null;
     document.getElementById('button-join').style.display = 'inline';
+    document.getElementById('button-record').style.display = 'none';
     document.getElementById('button-leave').style.display = 'none';
   });
 }

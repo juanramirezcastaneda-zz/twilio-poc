@@ -108,3 +108,5 @@ dist
 
 # To prevent mac adding not related files
 .DS_Store
+
+public/main.js

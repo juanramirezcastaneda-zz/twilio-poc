@@ -1,6 +1,6 @@
 'use strict';
 
-var Video = require('twilio-video');
+import Video from 'twilio-video';
 console.log(Video);
 
 var activeRoom;

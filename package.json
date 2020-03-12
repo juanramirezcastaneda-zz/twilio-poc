@@ -7,7 +7,7 @@
   "private": true,
   "scripts": {
     "build": "webpack",
-    "start": "node server.js"
+    "start": "webpack && node server.js"
   },
   "dependencies": {
     "dotenv": "^4.0.0",

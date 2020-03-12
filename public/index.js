@@ -1,7 +1,7 @@
 'use strict';
 
+var Video = require('twilio-video');
 console.log(Video);
-// var Video = require('twilio-video');
 
 var activeRoom;
 var previewTracks;

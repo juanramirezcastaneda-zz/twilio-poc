@@ -40,8 +40,15 @@ function detachParticipantTracks(participant) {
 window.addEventListener('beforeunload', leaveRoomIfJoined);
 
 // Obtain a token from the server in order to connect to the Room.
-$.getJSON('/token', function(data) {
+
+var tokenUrl =
+  'https://68eitjr1kj.execute-api.us-east-1.amazonaws.com/dev/videointerviewtoken';
+
+var token;
+$.post(tokenUrl, function(data) {
   identity = data.identity;
+  token = data.token;
+
   document.getElementById('room-controls').style.display = 'block';
 
   // Bind record button

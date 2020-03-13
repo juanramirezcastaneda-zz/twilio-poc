@@ -69,6 +69,7 @@ $.post(tokenUrl, function(data) {
     var connectOptions = {
       name: roomName,
       logLevel: 'debug',
+      // recordParticipantsOnConnect: true,
     };
 
     if (previewTracks) {

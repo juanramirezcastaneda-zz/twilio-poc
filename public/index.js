@@ -1,6 +1,7 @@
 'use strict';
 
 import Video from 'twilio-video';
+// import Twilio from 'twilio';
 
 var activeRoom;
 var previewTracks;
@@ -53,8 +54,15 @@ $.post(tokenUrl, function(data) {
 
   // Bind record button
   document.getElementById('button-record').onclick = function() {
-    console.log('record');
-    console.log(Video.createLocalVideoTrack().then(() => console.log('finish')));
+    const accountSid = 'AC5228aa17a5bc82b642f97194bdaf7aa7';
+    const authToken = tokenUrl;
+    // const client = Twilio(accountSid, authToken);
+    // console.log(client);
+
+    // // todo: pull the video group sid from the console - review
+    // client.video.recordings
+    //   .list({ groupingSid: ['PAd7865c2c53cd7e61baa92e21a3352adc'], limit: 20 })
+    //   .then(recordings => recordings.forEach(r => console.log(r.sid)));
   };
 
   // Bind button to join Room.

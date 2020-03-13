@@ -1605,6 +1605,11 @@ fs.realpath@^1.0.0:
   resolved "https://registry.yarnpkg.com/fs.realpath/-/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"
   integrity sha1-FQStJSMVjKpA20onh8sBQRmU6k8=
 
+fs@^0.0.1-security:
+  version "0.0.1-security"
+  resolved "https://registry.yarnpkg.com/fs/-/fs-0.0.1-security.tgz#8a7bd37186b6dddf3813f23858b57ecaaf5e41d4"
+  integrity sha1-invTcYa23d84E/I4WLV+yq9eQdQ=
+
 fsevents@^1.2.7:
   version "1.2.11"
   resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-1.2.11.tgz#67bf57f4758f02ede88fb2a1712fef4d15358be3"
@@ -3952,7 +3957,7 @@ twilio-video@^1.20.0:
     ws "^3.3.1"
     xmlhttprequest "^1.8.0"
 
-twilio@^3.0.0-rc.16:
+twilio@^3.40.0:
   version "3.40.0"
   resolved "https://registry.yarnpkg.com/twilio/-/twilio-3.40.0.tgz#0a231a2b82b93aad0ac6c2b13d538a68bf0de119"
   integrity sha512-aXDhmEm5RWMd+5kVbfMp1WTZIGiDwzuLewkzqhWE0eww2T6/PvK4Q4NoPJXDGh7LbcUjRhaS/8PzioSURAqDPw==

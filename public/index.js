@@ -56,6 +56,7 @@ $.post(tokenUrl, function(data) {
   document.getElementById('button-record').onclick = function() {
     const accountSid = 'AC5228aa17a5bc82b642f97194bdaf7aa7';
     const authToken = tokenUrl;
+    console.warn(authToken);
     // const client = Twilio(accountSid, authToken);
     // console.log(client);
 
@@ -86,7 +87,9 @@ $.post(tokenUrl, function(data) {
 
     // Join the Room with the token from the server and the
     // LocalParticipant's Tracks.
-    Video.connect(data.token, connectOptions).then(roomJoined, function(error) {
+    let localVideoPromise = Video.connect(data.token, connectOptions);
+
+    localVideoPromise.then(roomJoined, function(error) {
       log('Could not connect to Twilio: ' + error.message);
     });
   };
@@ -102,6 +105,7 @@ $.post(tokenUrl, function(data) {
 function roomJoined(room) {
   window.room = activeRoom = room;
 
+  console.warn(room);
   log("Joined as '" + identity + "'");
   document.getElementById('button-join').style.display = 'none';
   document.getElementById('button-record').style.display = 'inline';

@@ -65,6 +65,14 @@ $.post(tokenUrl, function(data) {
     );
   };
 
+  // Bind recordings button
+  document.getElementById('button-recordings').onclick = function() {
+    $.get('/twilio-video', { token: token, sid: activeRoom.sid }, function(data, _status) {
+      console.info(data);
+      console.log(activeRoom);
+    });
+  };
+
   // Bind button to join Room.
   document.getElementById('button-join').onclick = function() {
     roomName = document.getElementById('room-name').value;

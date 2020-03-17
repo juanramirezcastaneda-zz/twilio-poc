@@ -8,7 +8,7 @@ var previewTracks;
 var identity;
 var roomName;
 
-const testRoomName = 'TestRoon';
+const testRoomName = 'TestRoom';
 
 // Attach the Tracks to the DOM.
 function attachTracks(tracks, container) {
@@ -64,9 +64,9 @@ $.post(tokenUrl, function(data) {
     const client = require('twilio')(accountSid, authToken);
 
     client.video
-      .rooms('TestRoom')
+      .rooms(testRoomName)
       .fetch()
-      .then(room => console.log(room.uniqueName));
+      .then(room => console.warn(room));
     // const client = Twilio(accountSid, authToken);
     // console.log(client);
 

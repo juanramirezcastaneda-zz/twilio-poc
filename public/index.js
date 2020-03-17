@@ -3,6 +3,7 @@
 import Video from 'twilio-video';
 
 var activeRoom;
+var lastRoom;
 var previewTracks;
 var identity;
 var roomName;
@@ -55,21 +56,23 @@ $.post(tokenUrl, function(data) {
 
   // Bind record button
   document.getElementById('button-record').onclick = function() {
+    console.log('Start Record');
     $.get(
       '/twilio',
-      { token: token, roomName: activeRoom.name, roomId: activeRoom.sid },
+      { token: token, roomName: window.room.name, roomId: window.room.sid },
       function(data, _status) {
         console.info(data);
-        console.log(activeRoom);
+        console.log(window.room);
       },
     );
   };
 
   // Bind recordings button
   document.getElementById('button-recordings').onclick = function() {
-    $.get('/twilio-video', { token: token, sid: activeRoom.sid }, function(data, _status) {
+    console.log('Start Recordings');
+    $.get('/twilio-video', { token: token, sid: window.room.sid }, function(data, _status) {
       console.info(data);
-      console.log(activeRoom);
+      console.log(window.room);
     });
   };
 
@@ -110,7 +113,7 @@ $.post(tokenUrl, function(data) {
 
 // Successfully connected!
 function roomJoined(room) {
-  window.room = activeRoom = room;
+  window.room = lastRoom = activeRoom = room;
 
   console.warn(room);
   log("Joined as '" + identity + "'");

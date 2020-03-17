@@ -1,7 +1,6 @@
 'use strict';
 
 import Video from 'twilio-video';
-// import Twilio from 'twilio';
 
 var activeRoom;
 var previewTracks;
@@ -56,24 +55,14 @@ $.post(tokenUrl, function(data) {
 
   // Bind record button
   document.getElementById('button-record').onclick = function() {
-    const accountSid = 'AC5228aa17a5bc82b642f97194bdaf7aa7';
-    const authToken = tokenUrl;
-    console.warn(authToken);
-
-    const authToken = 'your_auth_token';
-    const client = require('twilio')(accountSid, authToken);
-
-    client.video
-      .rooms(testRoomName)
-      .fetch()
-      .then(room => console.warn(room));
-    // const client = Twilio(accountSid, authToken);
-    // console.log(client);
-
-    // // todo: pull the video group sid from the console - review
-    // client.video.recordings
-    //   .list({ groupingSid: ['PAd7865c2c53cd7e61baa92e21a3352adc'], limit: 20 })
-    //   .then(recordings => recordings.forEach(r => console.log(r.sid)));
+    $.get(
+      '/twilio',
+      { token: token, roomName: activeRoom.name, roomId: activeRoom.sid },
+      function(data, _status) {
+        console.info(data);
+        console.log(activeRoom);
+      },
+    );
   };
 
   // Bind button to join Room.

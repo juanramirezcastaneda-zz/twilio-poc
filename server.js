@@ -26,27 +26,36 @@ app.get('/', function(_request, response) {
 });
 
 app.get('/twilio', function(request, response) {
-  const accountSid = 'AC5228aa17a5bc82b642f97194bdaf7aa7';
-  const authToken = request.query.token;
+  const accountSid = process.env.TWILIO_ACCOUNT_SID;
+  const authToken = process.env.TWILIO_AUTH_TOKEN;
   const client = require('twilio')(accountSid, authToken);
 
-  console.log(client);
-
-  response.send('Fuck off');
+  return client.video
+    .rooms(request.query.roomName)
+    .fetch()
+    .then(function(room) {
+      response.send(room.uniqueName);
+    });
 });
 
 app.get('/twilio-video', function(request, response) {
-  const accountSid = 'AC5228aa17a5bc82b642f97194bdaf7aa7';
-  const authToken = request.query.token;
+  const accountSid = process.env.TWILIO_ACCOUNT_SID;
+  const authToken = process.env.TWILIO_AUTH_TOKEN;
   const client = require('twilio')(accountSid, authToken);
 
   const recordId = request.query.sid;
-  client.video
+
+  return client.video
     .recordings(recordId)
     .fetch()
-    .then(recording => {
+    .then(function(recording) {
+      console.log('Recording');
       console.info(recording);
       response.json(recording);
+    })
+    .catch(function(err) {
+      console.err(err);
+      response.send('Error : ' + err);
     });
 });
 

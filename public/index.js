@@ -59,7 +59,7 @@ $.post(tokenUrl, function(data) {
     console.log('Start Recordings');
     console.log(window.room);
 
-    fetch('https://video.twilio.com/v1/Rooms/RMc09c0ec0aa7d55108767dd80f978c736/Recordings/', {
+    fetch(`https://video.twilio.com/v1/Rooms/${window.room.sid}/Recordings/`, {
       headers: {
         Authorization:
           'Basic QUM1MjI4YWExN2E1YmM4MmI2NDJmOTcxOTRiZGFmN2FhNzo0MTQzNzAwZGZlM2RmNzQ0ZTY3YzZmNzhjOGY5NDlhNw==',
@@ -67,7 +67,9 @@ $.post(tokenUrl, function(data) {
     })
       .then(res => res.json())
       .then(jsonResponse => {
-        const mediaLinks = jsonResponse.recordings.map(record => record.links.media);
+        const mediaLinks = jsonResponse.recordings.map(record => ({
+          [record.type]: record.links.media,
+        }));
         console.log(mediaLinks);
         console.log(jsonResponse);
       });

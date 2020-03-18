@@ -25,19 +25,6 @@ app.get('/', function(_request, response) {
   response.sendFile(process.cwd() + '/public/index.html');
 });
 
-app.get('/twilio', function(request, response) {
-  const accountSid = process.env.TWILIO_ACCOUNT_SID;
-  const authToken = process.env.TWILIO_AUTH_TOKEN;
-  const client = require('twilio')(accountSid, authToken);
-
-  return client.video
-    .rooms(request.query.roomName)
-    .fetch()
-    .then(function(room) {
-      response.send(room.uniqueName);
-    });
-});
-
 app.get('/twilio-video', function(request, response) {
   const accountSid = process.env.TWILIO_ACCOUNT_SID;
   const authToken = process.env.TWILIO_AUTH_TOKEN;

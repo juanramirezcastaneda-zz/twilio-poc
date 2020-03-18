@@ -64,7 +64,13 @@ $.post(tokenUrl, function(data) {
         Authorization:
           'Basic QUM1MjI4YWExN2E1YmM4MmI2NDJmOTcxOTRiZGFmN2FhNzo0MTQzNzAwZGZlM2RmNzQ0ZTY3YzZmNzhjOGY5NDlhNw==',
       },
-    }).then(res => console.log(res));
+    })
+      .then(res => res.json())
+      .then(jsonResponse => {
+        const mediaLinks = jsonResponse.recordings.map(record => record.links.media);
+        console.log(mediaLinks);
+        console.log(jsonResponse);
+      });
   };
 
   // Bind button to join Room.

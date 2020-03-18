@@ -58,28 +58,20 @@ $.post(tokenUrl, function(data) {
   document.getElementById('button-recordings').onclick = function() {
     console.log('Start Recordings');
     console.log(window.room);
-    $.get(`https://video.twilio.com/v1/Rooms/${window.room.sid}/Recordings/`, function(
-      data,
-      status,
-    ) {
-      console.log(data, status);
-    });
-    $.get('/twilio-video', { sid: window.room.sid }, function(data, _status) {
-      console.info(data);
-    });
+
+    fetch('https://video.twilio.com/v1/Rooms/RMc09c0ec0aa7d55108767dd80f978c736/Recordings/', {
+      headers: {
+        Authorization:
+          'Basic QUM1MjI4YWExN2E1YmM4MmI2NDJmOTcxOTRiZGFmN2FhNzo0MTQzNzAwZGZlM2RmNzQ0ZTY3YzZmNzhjOGY5NDlhNw==',
+      },
+    }).then(res => console.log(res));
   };
 
   // Bind button to join Room.
   document.getElementById('button-join').onclick = function() {
-    roomName = document.getElementById('room-name').value;
-    if (!roomName) {
-      alert('Please enter a room name.');
-      return;
-    }
-
-    log("Joining room '" + roomName + "'...");
+    log("Joining room '" + testRoomName + "'...");
     var connectOptions = {
-      name: roomName,
+      name: testRoomName,
       logLevel: 'debug',
       // recordParticipantsOnConnect: true,
     };
@@ -111,7 +103,6 @@ function roomJoined(room) {
   console.warn(room);
   log("Joined as '" + identity + "'");
   document.getElementById('button-join').style.display = 'none';
-  document.getElementById('button-record').style.display = 'inline';
   document.getElementById('button-leave').style.display = 'inline';
 
   // Attach LocalParticipant's Tracks, if not already attached.
@@ -165,7 +156,6 @@ function roomJoined(room) {
     room.participants.forEach(detachParticipantTracks);
     activeRoom = null;
     document.getElementById('button-join').style.display = 'inline';
-    document.getElementById('button-record').style.display = 'none';
     document.getElementById('button-leave').style.display = 'none';
   });
 }

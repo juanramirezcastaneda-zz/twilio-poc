@@ -54,27 +54,18 @@ $.post(tokenUrl, function(data) {
 
   document.getElementById('room-controls').style.display = 'block';
 
-  // Bind record button
-  document.getElementById('button-record').onclick = function() {
-    console.log('Start Record');
-    console.log(window.room);
-    $.get(
-      '/twilio',
-      { token: token, roomName: window.room.name, roomId: window.room.sid },
-      function(data, _status) {
-        console.info(data);
-        console.log(window.room);
-      },
-    );
-  };
-
   // Bind recordings button
   document.getElementById('button-recordings').onclick = function() {
     console.log('Start Recordings');
     console.log(window.room);
-    $.get('/twilio-video', { token: token, sid: window.room.sid }, function(data, _status) {
+    $.get(`https://video.twilio.com/v1/Rooms/${window.room.sid}/Recordings/`, function(
+      data,
+      status,
+    ) {
+      console.log(data, status);
+    });
+    $.get('/twilio-video', { sid: window.room.sid }, function(data, _status) {
       console.info(data);
-      console.log(window.room);
     });
   };
 

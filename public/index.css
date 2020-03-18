@@ -134,9 +134,6 @@ div#controls div#room-controls input {
 }
 
 div#controls div#room-controls button {
-  color: #000;
-  background: 0 0;
-  border: 1px solid #686865;
   width: 100%;
 }
 

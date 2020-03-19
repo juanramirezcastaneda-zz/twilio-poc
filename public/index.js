@@ -12,6 +12,7 @@ const testRoomName = 'TestRoom';
 
 // Attach the Tracks to the DOM.
 function attachTracks(tracks, container) {
+  debugger;
   tracks.forEach(function(track) {
     container.appendChild(track.attach());
   });
@@ -159,11 +160,17 @@ function roomJoined(room) {
       previewTracks.forEach(function(track) {
         track.stop();
       });
-
-      console.warn(previewTracks);
-      console.log(previewTracks);
-      // previewTracks = null;
     }
+
+    // Attach local tracks to replay
+    let twilioVideo = document.getElementById('twilio-local');
+    let twilioCont = document.getElementById('twilio-cont');
+    var localTracks = Array.from(window.room.localParticipant.tracks.values());
+    debugger;
+
+    attachTracks(localTracks, twilioCont);
+    attachTracks(localTracks, twilioVideo);
+
     detachParticipantTracks(room.localParticipant);
     room.participants.forEach(detachParticipantTracks);
     activeRoom = null;

@@ -81,7 +81,6 @@ $.post(tokenUrl, function(data) {
     var connectOptions = {
       name: testRoomName,
       logLevel: 'debug',
-      // recordParticipantsOnConnect: true,
     };
 
     if (previewTracks) {
@@ -93,6 +92,8 @@ $.post(tokenUrl, function(data) {
     let localVideoPromise = Video.connect(data.token, connectOptions);
 
     localVideoPromise.then(roomJoined, function(error) {
+      console.warn('Room');
+      console.log(roomJoined);
       log('Could not connect to Twilio: ' + error.message);
     });
   };
@@ -158,7 +159,10 @@ function roomJoined(room) {
       previewTracks.forEach(function(track) {
         track.stop();
       });
-      previewTracks = null;
+
+      console.warn(previewTracks);
+      console.log(previewTracks);
+      // previewTracks = null;
     }
     detachParticipantTracks(room.localParticipant);
     room.participants.forEach(detachParticipantTracks);

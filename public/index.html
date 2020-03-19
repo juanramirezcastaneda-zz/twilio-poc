@@ -20,7 +20,6 @@
     <div id="remote-media"></div>
     <div id="controls" class="container-fluid">
       <div id="preview">
-        <p class="instructions">Hello Beautiful</p>
         <div>
           <div id="local-media"></div>
           <button id="button-preview" class="btn btn-primary btn-block">
@@ -45,6 +44,16 @@
         </button>
       </div>
       <div id="log"></div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <video id="twiltio-video" controls muted>
+          <source src="path/to/video.mp4" type="video/mp4" />
+          <audio id="twilio-audio" controls>
+            <source src="path/to/audio.mp3" type="audio/mpeg" />
+          </audio>
+        </video>
+      </div>
     </div>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>

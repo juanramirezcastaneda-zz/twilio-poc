@@ -10,6 +10,16 @@ var roomName;
 
 const testRoomName = 'TestRoom';
 
+// Attach to the video and audio read
+var myvideo = document.getElementById('twiltio-video');
+var myaudio = document.getElementById('twilio-audio');
+myvideo.onplay = function() {
+  myaudio.play();
+};
+myvideo.onpause = function() {
+  myaudio.pause();
+};
+
 // Attach the Tracks to the DOM.
 function attachTracks(tracks, container) {
   tracks.forEach(function(track) {

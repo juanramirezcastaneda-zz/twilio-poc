@@ -110,7 +110,6 @@ $.post(tokenUrl, function(data) {
 function roomJoined(room) {
   window.room = lastRoom = activeRoom = room;
 
-  console.warn(room);
   log("Joined as '" + identity + "'");
   document.getElementById('button-join').style.display = 'none';
   document.getElementById('button-leave').style.display = 'inline';
@@ -171,8 +170,8 @@ function roomJoined(room) {
     attachTracks(localTracks, twilioCont);
     attachTracks(localTracks, twilioVideo);
 
-    detachParticipantTracks(room.localParticipant);
-    room.participants.forEach(detachParticipantTracks);
+    // detachParticipantTracks(room.localParticipant);
+    // room.participants.forEach(detachParticipantTracks);
     activeRoom = null;
     document.getElementById('button-join').style.display = 'inline';
     document.getElementById('button-leave').style.display = 'none';

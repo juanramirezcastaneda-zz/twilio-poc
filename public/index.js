@@ -82,8 +82,6 @@ $.post(tokenUrl, function(data) {
     twilioCont.appendChild(videoTrack._dummyEl);
 
     let clonedParticipant = Object.assign(window.room.localParticipant, {});
-
-    Object.getPrototypeOf(VideoTrack.prototype), '_start', this.call(this, videoTrack);
     // var localTracks = Array.from(clonedParticipant.tracks.values());
     // attachTracks(localTracks, twilioCont);
   };

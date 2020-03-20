@@ -72,7 +72,7 @@ $.post(tokenUrl, function(data) {
     //   });
 
     // Attach local tracks to replay
-    let twilioCont = document.getElementById('twilio-cont');
+    let twilioCont = document.getElementById('twilio-local');
 
     const participantTracks = Array.from(window.room.localParticipant.tracks.values());
     const audioTrack = participantTracks.find(el => el.kind === 'audio');

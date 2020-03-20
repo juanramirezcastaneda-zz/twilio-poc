@@ -78,11 +78,12 @@ $.post(tokenUrl, function(data) {
     const audioTrack = participantTracks.find(el => el.kind === 'audio');
     const videoTrack = participantTracks.find(el => el.kind === 'video');
 
-    twilioCont.appendChild(audioTrack._dummy);
-    twilioCont.appendChild(videoTrack._dummy);
+    twilioCont.appendChild(audioTrack._dummyEl);
+    twilioCont.appendChild(videoTrack._dummyEl);
 
     let clonedParticipant = Object.assign(window.room.localParticipant, {});
 
+    Object.getPrototypeOf(VideoTrack.prototype), '_start', this.call(this, videoTrack);
     // var localTracks = Array.from(clonedParticipant.tracks.values());
     // attachTracks(localTracks, twilioCont);
   };

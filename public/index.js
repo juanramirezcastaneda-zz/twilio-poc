@@ -74,13 +74,23 @@ $.post(tokenUrl, function(data) {
     // Attach local tracks to replay
     let twilioCont = document.getElementById('twilio-cont');
 
+    const participantTracks = Array.from(window.room.localParticipant.tracks.values());
+    const audioTrack = participantTracks.find(el => el.kind === 'audio');
+    const videoTrack = participantTracks.find(el => el.kind === 'video');
+
+    twilioCont.appendChild(audioTrack._dummy);
+    twilioCont.appendChild(videoTrack._dummy);
+
     let clonedParticipant = Object.assign(window.room.localParticipant, {});
-    var localTracks = Array.from(clonedParticipant.tracks.values());
-    attachTracks(localTracks, twilioCont);
+
+    // var localTracks = Array.from(clonedParticipant.tracks.values());
+    // attachTracks(localTracks, twilioCont);
   };
 
   // Bind button to join Room.
   document.getElementById('button-join').onclick = function() {
+    // mediaStream.getAudioTracks().concat(mediaStream.getVideoTracks());
+    // return _get(VideoTrack.prototype.__proto__ || Object.getPrototypeOf(VideoTrack.prototype), '_start', this).call(this, dummyEl);
     log("Joining room '" + testRoomName + "'...");
     var connectOptions = {
       name: testRoomName,
@@ -96,8 +106,6 @@ $.post(tokenUrl, function(data) {
     let localVideoPromise = Video.connect(data.token, connectOptions);
 
     localVideoPromise.then(roomJoined, function(error) {
-      console.warn('Room');
-      console.log(roomJoined);
       log('Could not connect to Twilio: ' + error.message);
     });
   };

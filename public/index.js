@@ -12,7 +12,6 @@ const testRoomName = 'TestRoom';
 
 // Attach the Tracks to the DOM.
 function attachTracks(tracks, container) {
-  debugger;
   tracks.forEach(function(track) {
     container.appendChild(track.attach());
   });

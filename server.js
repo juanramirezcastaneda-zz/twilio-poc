@@ -42,7 +42,6 @@ app.get('/twilio-video', function(request, response) {
         videoLayout: { transcode: { video_sources: [videoSid] } },
       })
       .then(composition => {
-        console.log(composition);
         res.json({ sid: composition.sid });
       })
       .catch(function(err) {

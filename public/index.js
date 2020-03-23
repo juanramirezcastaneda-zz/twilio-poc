@@ -71,18 +71,17 @@ $.post(tokenUrl, function(data) {
     //     console.log(jsonResponse);
     //   });
 
-    // const participantTracks = Array.from(window.room.localParticipant.tracks.values());
     const roomSid = window.room.sid;
-    // const audioTrack = participantTracks.find(el => el.kind === 'audio');
-    // const videoTrack = participantTracks.find(el => el.kind === 'video');
 
     fetch(`/twilio-video?roomSid=${roomSid}`)
       .then(res => res.json())
       .then(jsonResponse => {
         let url = `https://video.twilio.com/v1/Compositions/${jsonResponse.sid}`;
-
-        let element = document.querySelector('#twilio-local > source');
-        element.src = url;
+        let videoElement = document.querySelector('#twilio-local');
+        let sourceElement = videoElement.querySelector('#twilio-local > source');
+        sourceElement.src = url;
+        debugger;
+        videoElement.load();
       });
   };
 

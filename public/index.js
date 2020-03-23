@@ -71,19 +71,14 @@ $.post(tokenUrl, function(data) {
     //     console.log(jsonResponse);
     //   });
 
-    // Attach local tracks to replay
-    let twilioCont = document.getElementById('twilio-local');
+    // const participantTracks = Array.from(window.room.localParticipant.tracks.values());
+    const roomSid = window.room.sid;
+    // const audioTrack = participantTracks.find(el => el.kind === 'audio');
+    // const videoTrack = participantTracks.find(el => el.kind === 'video');
 
-    const participantTracks = Array.from(window.room.localParticipant.tracks.values());
-    const audioTrack = participantTracks.find(el => el.kind === 'audio');
-    const videoTrack = participantTracks.find(el => el.kind === 'video');
-
-    twilioCont.appendChild(audioTrack._dummyEl);
-    twilioCont.appendChild(videoTrack._dummyEl);
-
-    let clonedParticipant = Object.assign(window.room.localParticipant, {});
-    // var localTracks = Array.from(clonedParticipant.tracks.values());
-    // attachTracks(localTracks, twilioCont);
+    fetch(`/twilio-video?roomSid=${roomSid}`)
+      .then(res => res.json())
+      .then(jsonResponse => console.log(jsonResponse));
   };
 
   // Bind button to join Room.

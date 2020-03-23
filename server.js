@@ -31,14 +31,19 @@ app.get('/twilio-video', function(request, response) {
   const client = require('twilio')(accountSid, authToken);
 
   const recordId = request.query.sid;
+  const roomSid = request.query.roomSid;
+  const audioSource = request.query.audioSrc;
+  const videoSrc = request.query.videoSrc;
 
-  return client.video
-    .recordings(recordId)
-    .fetch()
-    .then(function(recording) {
-      console.log('Recording');
-      console.info(recording);
-      response.json(recording);
+  return client.video.compositions
+    .create({
+      roomSid: roomSid,
+      audioSources: audioSource,
+      format: 'mp4',
+      videoLayout: { transcode: { video_sources: [videoSrc] } },
+    })
+    .then(composition => {
+      console.log('Created Composition with SID=' + composition.sid);
     })
     .catch(function(err) {
       console.err(err);

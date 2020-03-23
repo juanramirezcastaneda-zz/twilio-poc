@@ -32,7 +32,8 @@ app.get('/twilio-video', function(request, response) {
 
   const roomSid = request.query.roomSid;
 
-  function createComposition(audioSid, videoSid) {
+  async function createComposition(audioSid, videoSid, res) {
+    console.log(`compositioning`);
     return client.video.compositions
       .create({
         roomSid: roomSid,
@@ -41,24 +42,22 @@ app.get('/twilio-video', function(request, response) {
         videoLayout: { transcode: { video_sources: [videoSid] } },
       })
       .then(composition => {
-        console.log('Created Composition with SID=' + composition.sid);
-        response.json({ composition: composition });
+        console.log(composition);
+        res.json({ sid: composition.sid });
       })
       .catch(function(err) {
-        console.err(err);
-        response.json({ error: err });
+        res.status(500).send(err);
       });
   }
 
   let videoSid, audioSid;
-  client.video
+  return client.video
     .rooms(roomSid)
-    .recordings.list({ limit: 20 })
+    .recordings.list({ limit: 5 })
     .then(recordings => {
-      videoSid = recordings.filter(el => el.type === 'video').sid;
-      audioSid = recordings.filter(el => el.type === 'audio').sid;
-
-      return createComposition(audioSid, videoSid);
+      videoSid = recordings.find(el => el.type === 'video').sid;
+      audioSid = recordings.find(el => el.type === 'audio').sid;
+      return createComposition(audioSid, videoSid, response);
     });
 });
 

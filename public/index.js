@@ -78,7 +78,12 @@ $.post(tokenUrl, function(data) {
 
     fetch(`/twilio-video?roomSid=${roomSid}`)
       .then(res => res.json())
-      .then(jsonResponse => console.log(jsonResponse));
+      .then(jsonResponse => {
+        let url = `https://video.twilio.com/v1/Compositions/${jsonResponse.sid}`;
+
+        let element = document.querySelector('#twilio-local > source');
+        element.src = url;
+      });
   };
 
   // Bind button to join Room.

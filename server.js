@@ -33,7 +33,6 @@ app.get('/twilio-video', function(request, response) {
   const roomSid = request.query.roomSid;
 
   async function createComposition(audioSid, videoSid, res) {
-    console.log(`compositioning`);
     return client.video.compositions
       .create({
         roomSid: roomSid,

@@ -76,11 +76,9 @@ $.post(tokenUrl, function(data) {
     fetch(`/twilio-video?roomSid=${roomSid}`)
       .then(res => res.json())
       .then(jsonResponse => {
-        let url = `https://video.twilio.com/v1/Compositions/${jsonResponse.sid}`;
         let videoElement = document.querySelector('#twilio-local');
         let sourceElement = videoElement.querySelector('#twilio-local > source');
-        sourceElement.src = url;
-        debugger;
+        sourceElement.src = jsonResponse.media;
         videoElement.load();
       });
   };

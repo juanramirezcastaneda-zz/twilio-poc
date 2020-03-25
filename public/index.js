@@ -85,8 +85,6 @@ $.post(tokenUrl, function(data) {
 
   // Bind button to join Room.
   document.getElementById('button-join').onclick = function() {
-    // mediaStream.getAudioTracks().concat(mediaStream.getVideoTracks());
-    // return _get(VideoTrack.prototype.__proto__ || Object.getPrototypeOf(VideoTrack.prototype), '_start', this).call(this, dummyEl);
     log("Joining room '" + testRoomName + "'...");
     var connectOptions = {
       name: testRoomName,
